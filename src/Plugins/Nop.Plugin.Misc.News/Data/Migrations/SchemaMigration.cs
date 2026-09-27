@@ -56,11 +56,7 @@ public class SchemaMigration : Migration
             if (Schema.Table(newsCommentTableName).Constraint(constraintName).Exists())
                 Delete.UniqueConstraint(constraintName).FromTable(newsCommentTableName);
 
-            this.AddOrAlterColumnFor<NewsComment>(t => t.CustomerId)
-                .AsInt32()
-                .Nullable()
-                .ForeignKey(customerTableName, customerIdColumnName)
-                .OnDelete(Rule.SetNull);
+            this.AddOrAlterForeignKeyColumnFor<NewsComment, Customer>(t => t.CustomerId, Rule.SetNull).Nullable();
         }
         else
         {
@@ -73,8 +69,8 @@ public class SchemaMigration : Migration
     /// </summary>
     public override void Down()
     {
-        Delete.Table(NameCompatibilityManager.GetTableName(typeof(NewsComment)));
-        Delete.Table(NameCompatibilityManager.GetTableName(typeof(NewsItem)));
+        this.DeleteTableIfExists<NewsComment>();
+        this.DeleteTableIfExists<NewsItem>();
     }
 
     #endregion

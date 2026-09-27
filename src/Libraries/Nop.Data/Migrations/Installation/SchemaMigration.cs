@@ -8,7 +8,6 @@ using Nop.Core.Domain.Customers;
 using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Discounts;
 using Nop.Core.Domain.FilterLevels;
-using Nop.Core.Domain.Forums;
 using Nop.Core.Domain.Gdpr;
 using Nop.Core.Domain.Localization;
 using Nop.Core.Domain.Logging;
@@ -16,7 +15,7 @@ using Nop.Core.Domain.Media;
 using Nop.Core.Domain.Menus;
 using Nop.Core.Domain.Messages;
 using Nop.Core.Domain.Orders;
-using Nop.Core.Domain.Polls;
+using Nop.Core.Domain.PriceLists;
 using Nop.Core.Domain.ScheduleTasks;
 using Nop.Core.Domain.Security;
 using Nop.Core.Domain.Seo;
@@ -44,7 +43,6 @@ public class SchemaMigration : ForwardOnlyMigration
         this.CreateTableIfNotExists<AddressAttribute>();
         this.CreateTableIfNotExists<AddressAttributeValue>();
         this.CreateTableIfNotExists<GenericAttribute>();
-        this.CreateTableIfNotExists<SearchTerm>();
         this.CreateTableIfNotExists<Country>();
         this.CreateTableIfNotExists<Currency>();
         this.CreateTableIfNotExists<MeasureDimension>();
@@ -60,6 +58,7 @@ public class SchemaMigration : ForwardOnlyMigration
         this.CreateTableIfNotExists<CustomerAddressMapping>();
         this.CreateTableIfNotExists<CustomerRole>();
         this.CreateTableIfNotExists<CustomerCustomerRoleMapping>();
+        this.CreateTableIfNotExists<SearchTerm>();
         this.CreateTableIfNotExists<ExternalAuthenticationRecord>();
         this.CreateTableIfNotExists<CheckoutAttribute>();
         this.CreateTableIfNotExists<CheckoutAttributeValue>();
@@ -78,6 +77,10 @@ public class SchemaMigration : ForwardOnlyMigration
         this.CreateTableIfNotExists<ReviewType>();
         this.CreateTableIfNotExists<SpecificationAttributeGroup>();
         this.CreateTableIfNotExists<SpecificationAttribute>();
+        this.CreateTableIfNotExists<PriceList>();
+        this.CreateTableIfNotExists<PriceListItem>();
+        this.CreateTableIfNotExists<PriceListCustomer>();
+        this.CreateTableIfNotExists<PriceListCustomerRole>();
         this.CreateTableIfNotExists<ProductAttributeCombination>();
         this.CreateTableIfNotExists<ProductAttributeCombinationPicture>();
         this.CreateTableIfNotExists<ProductAttributeMapping>();
@@ -136,12 +139,6 @@ public class SchemaMigration : ForwardOnlyMigration
         this.CreateTableIfNotExists<DiscountUsageHistory>();
         this.CreateTableIfNotExists<DiscountManufacturerMapping>();
         this.CreateTableIfNotExists<PrivateMessage>();
-        this.CreateTableIfNotExists<ForumGroup>();
-        this.CreateTableIfNotExists<Forum>();
-        this.CreateTableIfNotExists<ForumTopic>();
-        this.CreateTableIfNotExists<ForumPost>();
-        this.CreateTableIfNotExists<ForumPostVote>();
-        this.CreateTableIfNotExists<ForumSubscription>();
         this.CreateTableIfNotExists<GdprConsent>();
         this.CreateTableIfNotExists<GdprLog>();
         this.CreateTableIfNotExists<ActivityLogType>();
@@ -153,9 +150,6 @@ public class SchemaMigration : ForwardOnlyMigration
         this.CreateTableIfNotExists<NewsLetterSubscriptionType>();
         this.CreateTableIfNotExists<NewsLetterSubscription>();
         this.CreateTableIfNotExists<QueuedEmail>();
-        this.CreateTableIfNotExists<Poll>();
-        this.CreateTableIfNotExists<PollAnswer>();
-        this.CreateTableIfNotExists<PollVotingRecord>();
         this.CreateTableIfNotExists<AclRecord>();
         this.CreateTableIfNotExists<PermissionRecord>();
         this.CreateTableIfNotExists<PermissionRecordCustomerRoleMapping>();
@@ -170,5 +164,8 @@ public class SchemaMigration : ForwardOnlyMigration
         this.CreateTableIfNotExists<VendorNote>();
         this.CreateTableIfNotExists<Menu>();
         this.CreateTableIfNotExists<MenuItem>();
+        this.CreateTableIfNotExists<ContactFormAttribute>();
+        this.CreateTableIfNotExists<ContactFormAttributeValue>();
+        this.CreateTableIfNotExists<Product3dObject>();
     }
 }
